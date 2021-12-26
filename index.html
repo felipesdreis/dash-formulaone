@@ -1,0 +1,49 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <title>Formula 1 Dashboard</title>
+    <link rel="stylesheet" href="/static/index.css">
+
+    <!-- TODO: REMOVER, temporario -->
+    <link rel="stylesheet" href="public/index.css">
+</head>
+
+<body>
+
+    <div class="principal">
+        <meter id="rpm" low="1000" high="12500" value="1000" min="0" max="13000"></meter>
+    </div>
+    <div id="gear-container">
+        <h1 id="speed">000 </h1>
+        <h1 id="gear">0</h1>
+    </div>
+
+
+
+    <!-- websocket connection -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var speed = document.getElementById('speed')
+        var gear = document.getElementById('gear')
+        var rpm = document.getElementById('rpm')
+
+        socket.on('dash', function (cardata) {
+            speed.textContent = cardata.speed
+            gear.textContent = cardata.gear
+            rpm.value = cardata.rpm
+            //item.textContent = msg;
+            //messages.appendChild(item);
+            //alert(cardata.speed)
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+    </script>
+</body>
+
+</html>

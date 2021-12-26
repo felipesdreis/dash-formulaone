@@ -12,7 +12,8 @@
   "author": "Felipe Reis",
   "license": "MIT",
   "dependencies": {
-    "f1-2021-udp": "^1.12.5"
-  },
-  "type": "module"
+    "express": "^4.17.2",
+    "f1-2021-udp": "^1.12.5",
+    "socket.io": "^4.4.0"
+  }
 }

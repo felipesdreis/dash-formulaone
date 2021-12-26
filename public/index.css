@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+    margin-top: 0;
+}
+
+.principal{
+    display: flex;
+    justify-content: center;
+}
+
+
+#rpm{
+    width: 100%;
+    height: 25vh;
+}
+
+#speed{
+    font-family: 'Audiowide', cursive;
+    font-size: 30vh;   
+    color: yellow;
+    background-color: red;
+    /* width: 25%; */
+}
+
+#gear-container{
+    display: flex;
+    justify-content: center;
+}
+#gear{
+    color: red;
+    background-color: blue;
+    font-family: 'Audiowide', cursive;
+    /* padding: 1%; */
+    font-size: 30vh;
+    margin-left: 5vw;
+}
