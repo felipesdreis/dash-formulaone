@@ -1,0 +1,18 @@
+{
+  "name": "dash-formulaone-2021",
+  "version": "0.0.1",
+  "description": "dash painel for game f1 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "f12021"
+  ],
+  "author": "Felipe Reis",
+  "license": "MIT",
+  "dependencies": {
+    "f1-2021-udp": "^1.12.5"
+  },
+  "type": "module"
+}
