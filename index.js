@@ -7,6 +7,8 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server);
 
+
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
@@ -23,6 +25,7 @@ io.on('connection', (socket) => {
 function sendToFront(speed, gear, rpm) {
     io.emit('dash', { speed: speed, gear: gear, rpm: rpm });
 }
+
 
 
 // UDP listener e parser do jogo f1 2021
@@ -44,5 +47,18 @@ client.start();
 server.listen(3000, () => {
     console.log('listening on *:3000');
 });
+
+// unit test
+// function getRandomIntInclusive(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+//   }
+
+// setInterval(() => { 
+//     let rpm = getRandomIntInclusive(1000,13000)
+//     console.log(rpm);
+//     sendToFront(230,5,rpm)
+// }, 20);
 
 

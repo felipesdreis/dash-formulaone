@@ -34,3 +34,14 @@ body {
     font-size: 30vh;
     margin-left: 5vw;
 }
+
+/* leds painel */
+
+.led-off{
+    margin: 1vh;
+    width: 5vw;
+    height: 10vh;
+    background-color: gray;
+    border-radius: 50%;
+    /* box-shadow: #000 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 2px 12px; */
+}

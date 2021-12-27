@@ -13,5 +13,5 @@ Para executar é só na pasta raiz rodar o comando
 ```
 node index.js
 ```
-No seu celular ou tablet abra o navegador e digite o ip do compatador na porta 3000
+No seu celular ou tablet abra o navegador e digite o ip do computador na porta 3000
 >exemplo -> 192.168.1.1:3000
