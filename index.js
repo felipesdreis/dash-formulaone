@@ -32,9 +32,9 @@ function sendToFront(speed, gear, rpm) {
 const client = new F1TelemetryClient.F1TelemetryClient();
 client.on('carTelemetry', function (data) {
 
-    let speed = data.m_carTelemetryData[0].m_speed
-    let gear = data.m_carTelemetryData[0].m_gear
-    let rpm = data.m_carTelemetryData[0].m_engineRPM   
+    let speed = data.m_carTelemetryData[1].m_speed
+    let gear = data.m_carTelemetryData[1].m_gear
+    let rpm = data.m_carTelemetryData[1].m_engineRPM   
 
     sendToFront(speed, gear, rpm)
 })
