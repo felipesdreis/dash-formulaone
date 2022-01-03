@@ -17,6 +17,10 @@ Speed Painel para o jogo Formula 1 2021 PC
 
 Necessário ter o [NodeJS](https://nodejs.org/en/download/)
 
+Telemetria via UDP ativada no jogo 👇
+
+![telemetria](./pictures/setup-game.jpg)
+
 ## Rodando
 
 Para executar é só na pasta raiz rodar o comando 
