@@ -10,7 +10,7 @@ Traz o RPM, Velocidade em KM/H e Marcha
 
 ## Uso
 
-Necessario ter o NodeJS 
+Necessário ter o [NodeJS](https://nodejs.org/en/download/)
 
 Para executar é só na pasta raiz rodar o comando 
 
