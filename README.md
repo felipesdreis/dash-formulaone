@@ -37,4 +37,4 @@ No seu celular ou tablet abra o navegador e digite o ip do computador na porta 3
 
 ## Credits
 
-- [f1-2021-udp](https://www.npmjs.com/package/f1-2021-udp)
+- [f1-2021-udp](https://github.com/raweceek-temeletry/f1-2021-udp#readme)
