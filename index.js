@@ -7,6 +7,10 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server);
 
+// variavel global
+// id do piloto
+var driverID = 0
+
 
 
 app.get('/', (req, res) => {
@@ -19,7 +23,7 @@ io.on('connection', (socket) => {
     console.log('Front-End conectado');
     socket.on('disconnect', () => {
         console.log('Front-End Disconectado');
-      });
+    });
 });
 
 function sendToFront(speed, gear, rpm) {
@@ -32,13 +36,12 @@ function sendToFront(speed, gear, rpm) {
 const client = new F1TelemetryClient.F1TelemetryClient();
 client.on('carTelemetry', function (data) {
 
-    let speed = data.m_carTelemetryData[1].m_speed
-    let gear = data.m_carTelemetryData[1].m_gear
-    let rpm = data.m_carTelemetryData[1].m_engineRPM   
+    let speed = data.m_carTelemetryData[driverID].m_speed
+    let gear = data.m_carTelemetryData[driverID].m_gear
+    let rpm = data.m_carTelemetryData[driverID].m_engineRPM
 
     sendToFront(speed, gear, rpm)
 })
-
 
 // inicia o listener do jogo
 client.start();
@@ -55,10 +58,25 @@ server.listen(3000, () => {
 //     return Math.floor(Math.random() * (max - min + 1)) + min;
 //   }
 
-// setInterval(() => { 
+// setInterval(() => {
 //     let rpm = getRandomIntInclusive(1000,13000)
 //     console.log(rpm);
 //     sendToFront(230,5,rpm)
 // }, 20);
+
+
+// Print Local IP
+var ifaces = require('os').networkInterfaces();
+var adresses = Object.keys(ifaces).reduce(function (result, dev) {
+  return result.concat(ifaces[dev].reduce(function (result, details) {
+    return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : []);
+  }, []));
+});
+console.log(`IP Local: ${adresses}`)
+
+//busca o id do piloto
+client.on('participants',function(data) {
+    driverID = data.m_header.m_playerCarIndex
+})
 
 

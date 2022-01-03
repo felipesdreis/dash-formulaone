@@ -1,0 +1,7 @@
+{
+    "name": "dash-formulaone-2021",
+    "version": "0.0.1",
+    "description": "dash painel for game f1 2021",
+    "display": "standalone", 
+    "orientation": "landscape"
+}
