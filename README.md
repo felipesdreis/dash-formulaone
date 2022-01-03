@@ -4,13 +4,20 @@ Speed Painel para o jogo Formula 1 2021 PC
 ![use](./pictures/use-dash.gif)
 
 ## Mostrador
-Traz o RPM, Velocidade em KM/H e Marcha
+
+- [x] RPM
+- [x] Velocidade em KM/H
+- [x] Marcha
+- [ ] DRS
+- [ ] Delta
 
 ![front-end](./pictures/front.jpg)
 
-## Uso
+## Pré-requisitos
 
 Necessário ter o [NodeJS](https://nodejs.org/en/download/)
+
+## Rodando
 
 Para executar é só na pasta raiz rodar o comando 
 
@@ -22,3 +29,8 @@ No seu celular ou tablet abra o navegador e digite o ip do computador na porta 3
 >exemplo -> 192.168.1.4:3000
 
 ![running](./pictures/running.png)
+
+
+## Credits
+
+- [f1-2021-udp](https://www.npmjs.com/package/f1-2021-udp)

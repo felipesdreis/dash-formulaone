@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "f12021"
+    "f12021",
+    "dashboard",
+    "f1game"
   ],
   "author": "Felipe Reis",
   "license": "MIT",
