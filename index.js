@@ -26,8 +26,13 @@ io.on('connection', (socket) => {
     });
 });
 
-function sendToFront(speed, gear, rpm) {
-    io.emit('dash', { speed: speed, gear: gear, rpm: rpm });
+function sendToFront(speed, gear, rpm, drs) {
+    io.emit('dash', { speed: speed, gear: gear, rpm: rpm, drs: drs });
+}
+
+
+function sendToFront_lapData(position, lap, laptime) {
+    io.emit('lapdata', { p: position, l: lap, laptime: laptime });
 }
 
 
@@ -38,9 +43,25 @@ client.on('carTelemetry', function (data) {
 
     let speed = data.m_carTelemetryData[driverID].m_speed
     let gear = data.m_carTelemetryData[driverID].m_gear
-    let rpm = data.m_carTelemetryData[driverID].m_engineRPM
+    let rpm = data.m_carTelemetryData[driverID].m_revLightsBitValue
+    let drs = data.m_carTelemetryData[driverID].m_drs
 
-    sendToFront(speed, gear, rpm)
+    sendToFront(speed, gear, rpm, drs)
+})
+
+client.on('lapData', function (data) {
+
+    function millisToMinutesAndSeconds(millis) {
+        var minutes = Math.floor(millis / 60000);
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    let position = data.m_lapData[driverID].m_carPosition
+    let lap = data.m_lapData[driverID].m_currentLapNum
+    let lapTime = millisToMinutesAndSeconds(data.m_lapData[driverID].m_lastLapTimeInMS)
+
+    sendToFront_lapData(position, lap, lapTime)
 })
 
 // inicia o listener do jogo
@@ -51,31 +72,41 @@ server.listen(3000, () => {
     console.log('listening on *:3000');
 });
 
-// unit test
+// unit test start
 // function getRandomIntInclusive(min, max) {
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
 //     return Math.floor(Math.random() * (max - min + 1)) + min;
-//   }
+// }
 
 // setInterval(() => {
-//     let rpm = getRandomIntInclusive(1000,13000)
-//     console.log(rpm);
-//     sendToFront(230,5,rpm)
-// }, 20);
 
+//     let rpm = getRandomIntInclusive(0, 14)
+//     let drs = getRandomIntInclusive(0, 1)
+//     let speed = getRandomIntInclusive(0, 330);
+//     let gear = getRandomIntInclusive(0, 8)
+
+//     let position = getRandomIntInclusive(1, 22)
+//     let lap = getRandomIntInclusive(0, 36)
+//     let lapTime = getRandomIntInclusive(100,300)
+
+//     sendToFront(speed, gear, rpm, drs)
+//     sendToFront_lapData(position, lap, lapTime)
+
+// }, 5000);
+// unit test end
 
 // Print Local IP
 var ifaces = require('os').networkInterfaces();
 var adresses = Object.keys(ifaces).reduce(function (result, dev) {
-  return result.concat(ifaces[dev].reduce(function (result, details) {
-    return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : []);
-  }, []));
+    return result.concat(ifaces[dev].reduce(function (result, details) {
+        return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : []);
+    }, []));
 });
 console.log(`IP Local: ${adresses}`)
 
 //busca o id do piloto
-client.on('participants',function(data) {
+client.on('participants', function (data) {
     driverID = data.m_header.m_playerCarIndex
 })
 

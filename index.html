@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <title>Formula 1 Dashboard</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
     <link rel="stylesheet" href="/static/index.css">
     <link rel="manifest" href="/static/manifest.json">
 
@@ -16,111 +14,61 @@
 
 <body>
 
-    <div class="principal">
-        <div id="led1" class="led-off"></div>
-        <div id="led2" class="led-off"></div>
-        <div id="led3" class="led-off"></div>
-        <div id="led4" class="led-off"></div>
-        <div id="led5" class="led-off"></div>
-        <div id="led6" class="led-off"></div>
-        <div id="led7" class="led-off"></div>
-        <div id="led8" class="led-off"></div>
-        <div id="led9" class="led-off"></div>
-        <div id="led10" class="led-off"></div>
-        <div id="led11" class="led-off"></div>
-        <div id="led12" class="led-off"></div>
-        <div id="led13" class="led-off"></div>
-    </div>
-    <div id="gear-container">
-        <h1 id="speed">000 </h1>
-        <h1 id="gear">0</h1>
+    <!-- REV LIGHTS -->
+    <div class="container">
+        <div class="principal">
+            <div id="led1" class="led-off"></div>
+            <div id="led2" class="led-off"></div>
+            <div id="led3" class="led-off"></div>
+            <div id="led4" class="led-off"></div>
+            <div id="led5" class="led-off"></div>
+            <div id="led6" class="led-off"></div>
+            <div id="led7" class="led-off"></div>
+            <div id="led8" class="led-off"></div>
+            <div id="led9" class="led-off"></div>
+            <div id="led10" class="led-off"></div>
+            <div id="led11" class="led-off"></div>
+            <div id="led12" class="led-off"></div>
+            <div id="led13" class="led-off"></div>
+            <div id="led14" class="led-off"></div>
+        </div>
     </div>
 
 
+    <!-- LAP AND SPEED -->
+    <div align='center' class="container first-line">
+        <div class="row">
+            <div class="col">
+                <h1 align='center' id="lap">V0</h1>
+            </div>
+            <div id='drs' class="col">
+                DRS OFF
+            </div>
+            <div class="col">
+                <h1 align='center' id="speed">KM/H: 000</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- POSITION GEAR -->
+    <div align='center' class="container first-line">
+        <div class="row">
+            <div class="col">
+                <h1 align='center' id="position">P0</h1>
+            </div>
+            <div class="col">
+                <h1 id="gear">0</h1>
+            </div>
+            <div class="col">
+                <h1 align='center' id="laptime">00:00</h1>
+            </div>
+        </div>
+    </div>
 
     <!-- websocket connection -->
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const zeroPad = (num, places) => String(num).padStart(places, '0')
-        var socket = io();
-        var speed = document.getElementById('speed')
-        var gear = document.getElementById('gear')
-        //var rpm = document.getElementById('rpm')
-
-        socket.on('dash', function (cardata) {
-            //velocidade
-            speed.textContent = zeroPad(cardata.speed, 3)
-            //RPM
-            lightLeds(cardata.rpm)
-            //Marcha
-            let cargear = cardata.gear
-            switch (cargear) {
-                case 0:
-                    gear.textContent = 'N'
-                    break
-                case -1:
-                    gear.textContent = 'R'
-                    break
-                default:
-                    gear.textContent = cargear
-                    break;
-            }
-
-        });
-
-        const dictionaryLeds = {
-            led1: '#00FF2A',
-            led2: '#00FF2A',
-            led3: '#00FF2A',
-            led4: '#00FF2A',
-            led5: '#0F75FF',
-            led6: '#0F75FF',
-            led7: '#0F75FF',
-            led8: '#0F75FF',
-            led9: '#0F75FF',
-            led10: '#FF2121',
-            led11: '#FF2121',
-            led12: '#FF2121',
-            led13: '#FF2121'
-        }
-
-        function lightLeds(rpm) {
-
-            if (rpm > 12100) {
-                document.body.style.backgroundColor = "purple";
-            } else {
-                document.body.style.backgroundColor = "black";
-            }
-
-            let numLeds = 13
-            let intRpm = parseInt(rpm / 1000)
-            //liga o que for menor
-            for (let index = intRpm; index > 0; index--) {
-                let light = `led${index}`
-                console.log("FSDR ~ lightLeds ~ light ON", light)
-                document.getElementById(light).style.backgroundColor = dictionaryLeds[light]
-            }
-            //desliga o que for maior
-            for (let index = intRpm + 1; index <= numLeds; index++) {
-                let light = `led${index}`
-                console.log("FSDR ~ lightLeds ~ light OFF", light)
-                document.getElementById(light).style.backgroundColor = "gray"
-            }
-
-        }
-
-        window.onload = function () {
-            screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
-
-            if (screen.lockOrientationUniversal("landscape-primary")) {
-                alert('lock')
-            } else {
-                alert('lock fail')
-            }
-        }
-
-
-    </script>
+    <script src="/static/bootstrap.bundle.min.js"></script>
+    <script src='/static/main.js'></script>
 </body>
 
 </html>

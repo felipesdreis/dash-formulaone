@@ -1,3 +1,8 @@
+@font-face {
+    font-family: digitalFont;
+    src: url(/static/DS-DIGIB.ttf);
+}
+
 body {
     background-color: black;
     margin-top: 0;
@@ -15,24 +20,39 @@ body {
 }
 
 #speed{
-    font-family: 'Audiowide', cursive;
-    font-size: 30vh;   
-    color: yellow;
-    background-color: red;
-    /* width: 25%; */
+    font-family: digitalFont;
+    font-size: 6vh;   
+    color: red;  
+}
+#lap{
+    font-family: digitalFont;
+    font-size: 6vh;   
+    color: white;  
+}
+#position{
+    font-family: digitalFont;
+    font-size: 6vh;   
+    color: white;  
+}
+#laptime{
+    font-family: digitalFont;
+    font-size: 6vh;   
+    color: white;  
+}
+#drs{
+    font-family: digitalFont;
+    font-size: 4vh;   
+    color: purple;  
 }
 
-#gear-container{
-    display: flex;
-    justify-content: center;
+.first-line{
+    margin-top: 4vh;
 }
+
 #gear{
-    color: red;
-    background-color: blue;
-    font-family: 'Audiowide', cursive;
-    /* padding: 1%; */
-    font-size: 30vh;
-    margin-left: 5vw;
+    color: white;
+    font-family: digitalFont;   
+    font-size: 50vh;   
 }
 
 /* leds painel */
