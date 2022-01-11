@@ -58,8 +58,7 @@ const dictionaryLeds = {
     led10: '#2AFA06',
     led11: '#2AFA06',
     led12: '#2AFA06',
-    led13: '#2AFA06',
-    led14: '#FFEE00'
+    led13: '#FFEE00'
 }
 
 /**
@@ -69,14 +68,14 @@ const dictionaryLeds = {
  */
 function lightLeds(rpm) {
 
-    if (rpm > 13) {
+    if (rpm > 90) {
         document.body.style.backgroundColor = "#6801DB";
     } else {
         document.body.style.backgroundColor = "black";
     }
 
-    let numLeds = 14
-    let intRpm = parseInt(rpm)
+    let numLeds = 13
+    let intRpm = parseInt(rpm *0.13)
     //liga o que for menor
     for (let index = intRpm; index > 0; index--) {
         let light = `led${index}`

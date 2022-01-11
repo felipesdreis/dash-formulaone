@@ -43,10 +43,12 @@ client.on('carTelemetry', function (data) {
 
     let speed = data.m_carTelemetryData[driverID].m_speed
     let gear = data.m_carTelemetryData[driverID].m_gear
-    let rpm = data.m_carTelemetryData[driverID].m_revLightsBitValue
+    let rpm = data.m_carTelemetryData[driverID].m_engineRPM
     let drs = data.m_carTelemetryData[driverID].m_drs
+    let revLight = data.m_carTelemetryData[driverID].m_revLightsPercent
+    //console.log(revLight);
 
-    sendToFront(speed, gear, rpm, drs)
+    sendToFront(speed, gear, revLight, drs)
 })
 
 client.on('lapData', function (data) {

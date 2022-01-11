@@ -21,32 +21,32 @@ body {
 
 #speed{
     font-family: digitalFont;
-    font-size: 6vh;   
-    color: red;  
+    font-size: 8vh;   
+    color: yellow;  
 }
 #lap{
     font-family: digitalFont;
-    font-size: 6vh;   
+    font-size: 8vh;   
     color: white;  
 }
 #position{
     font-family: digitalFont;
-    font-size: 6vh;   
+    font-size: 8vh;   
     color: white;  
 }
 #laptime{
     font-family: digitalFont;
-    font-size: 6vh;   
+    font-size: 8vh;   
     color: white;  
 }
 #drs{
     font-family: digitalFont;
-    font-size: 4vh;   
+    font-size: 6vh;   
     color: purple;  
 }
 
 .first-line{
-    margin-top: 4vh;
+    margin-top: 1vh;
 }
 
 #gear{
