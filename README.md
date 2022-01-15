@@ -6,7 +6,7 @@ Speed Painel para o jogo Formula 1 2021 PC
 
 ## Painel
 
-### V 0.01
+### V 0.0.1
 
 - RPM
 - Velocidade em KM/H
