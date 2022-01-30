@@ -51,7 +51,8 @@ body {
 
 #gear{
     color: white;
-    font-family: digitalFont;   
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold; 
     font-size: 50vh;   
 }
 
@@ -65,3 +66,21 @@ body {
     border-radius: 50%;
     /* box-shadow: #000 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 2px 12px; */
 }
+
+
+/* fia-lights */
+.left, .right {
+    background: rgb(116, 116, 116);
+    position: fixed; 
+    margin: 1vh;
+    
+}
+.left, .right {
+    bottom: 0;
+    width: 3vw;
+    height: 6vh;
+    border-radius: 50%;
+  
+}
+.left { left: 1vw; }
+.right { right: 1vw; }

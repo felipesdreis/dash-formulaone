@@ -5,6 +5,8 @@ var gear = document.getElementById('gear')
 var lap = document.getElementById('lap')
 var laptime = document.getElementById('laptime')
 var position = document.getElementById('position')
+var lateralLeft = document.querySelectorAll('.left')
+var lateralRight = document.querySelectorAll('.right')
 //var rpm = document.getElementById('rpm')
 
 socket.on('dash', function (cardata) {
@@ -42,6 +44,7 @@ socket.on('lapdata', function (lapdata) {
     position.textContent = `P${lapdata.p}`
     lap.textContent = `V${lapdata.l}`
     laptime.textContent = lapdata.laptime
+    lateralLedsFlags(lapdata.fia_flag)
 
 });
 
@@ -75,7 +78,7 @@ function lightLeds(rpm) {
     }
 
     let numLeds = 13
-    let intRpm = parseInt(rpm *0.13)
+    let intRpm = parseInt(rpm * 0.13)
     //liga o que for menor
     for (let index = intRpm; index > 0; index--) {
         let light = `led${index}`
@@ -92,5 +95,40 @@ function lightLeds(rpm) {
     }
 
 }
+
+const dictionaryFlags = {
+    0: 'gray',
+    1: 'green',
+    2: 'blue',
+    3: 'yellow',
+    4: 'red'
+}
+/**
+ * função para pintar os leds laterais com as cores das bandeiras de aviso da FIA
+ *
+ * @param {*} lightColor
+ */
+function lateralLedsFlags(lightColor) {
+
+    lateralLeft.forEach(led => {
+        led.style.backgroundColor = dictionaryFlags[lightColor]
+    });
+    lateralRight.forEach(led => {
+        led.style.backgroundColor = dictionaryFlags[lightColor]
+    });
+
+    setTimeout(() => {
+        lateralLeft.forEach(led => {
+            led.style.backgroundColor = 'gray'
+        });
+        lateralRight.forEach(led => {
+            led.style.backgroundColor = 'gray'
+        });
+    }, 1000);
+
+
+}
+
+
 
 

@@ -10,6 +10,7 @@ const io = new Server(server);
 // variavel global
 // id do piloto
 var driverID = 0
+var fiaFlags = 0
 
 
 
@@ -32,7 +33,7 @@ function sendToFront(speed, gear, rpm, drs) {
 
 
 function sendToFront_lapData(position, lap, laptime) {
-    io.emit('lapdata', { p: position, l: lap, laptime: laptime });
+    io.emit('lapdata', { p: position, l: lap, laptime: laptime, fia_flag: fiaFlags });
 }
 
 
@@ -53,10 +54,17 @@ client.on('carTelemetry', function (data) {
 
 client.on('lapData', function (data) {
 
-    function millisToMinutesAndSeconds(millis) {
-        var minutes = Math.floor(millis / 60000);
-        var seconds = ((millis % 60000) / 1000).toFixed(0);
-        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    function millisToMinutesAndSeconds(duration) {
+        var milliseconds = Math.floor((duration % 1000) / 100),
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        return hours + ":" + minutes + ":" + seconds + "." + milliseconds
     }
 
     let position = data.m_lapData[driverID].m_carPosition
@@ -66,6 +74,9 @@ client.on('lapData', function (data) {
     sendToFront_lapData(position, lap, lapTime)
 })
 
+client.on('carStatus', function (data) {
+    fiaFlags = data.m_carStatusData[driverID].m_vehicleFiaFlags
+})
 // inicia o listener do jogo
 client.start();
 
@@ -94,6 +105,7 @@ server.listen(3000, () => {
 
 //     sendToFront(speed, gear, rpm, drs)
 //     sendToFront_lapData(position, lap, lapTime)
+//     fiaFlags = getRandomIntInclusive(0,4)
 
 // }, 5000);
 // unit test end
