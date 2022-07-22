@@ -4,7 +4,8 @@
   "description": "dash painel for game f1 2021",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [
     "f12021",
@@ -14,8 +15,20 @@
   "author": "Felipe Reis",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.2",
-    "f1-2021-udp": "^1.12.5",
-    "socket.io": "^4.4.0"
+    "express": "4.17.2",
+    "f1-2021-udp": "1.12.5",
+    "socket.io": "4.4.0"
+  },
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "public/**/*",
+      "public/DS-DIGIB.TTF",
+      "public/DIGITAL.TXT",
+      "*"
+    ],
+    "targets": [
+      "node14"
+    ]
   }
 }
