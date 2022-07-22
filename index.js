@@ -64,7 +64,7 @@ client.on('lapData', function (data) {
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-        return hours + ":" + minutes + ":" + seconds + "." + milliseconds
+        return  minutes + ":" + seconds + "." + milliseconds
     }
 
     let position = data.m_lapData[driverID].m_carPosition

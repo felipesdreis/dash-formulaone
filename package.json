@@ -13,7 +13,7 @@
     "f1game"
   ],
   "author": "Felipe Reis",
-  "license": "MIT",
+  "license": "GNU AGPLv3",
   "dependencies": {
     "express": "4.17.2",
     "f1-2021-udp": "1.12.5",

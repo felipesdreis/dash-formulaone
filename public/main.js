@@ -116,17 +116,6 @@ function lateralLedsFlags(lightColor) {
     lateralRight.forEach(led => {
         led.style.backgroundColor = dictionaryFlags[lightColor]
     });
-
-    setTimeout(() => {
-        lateralLeft.forEach(led => {
-            led.style.backgroundColor = 'gray'
-        });
-        lateralRight.forEach(led => {
-            led.style.backgroundColor = 'gray'
-        });
-    }, 1000);
-
-
 }
 
 
