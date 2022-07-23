@@ -2,17 +2,9 @@
 
 Speed Painel para o jogo Formula 1 2021 PC
 
-![use](./pictures/use-dash.gif)
+![use](./pictures/usev1.gif)
 
 ## Painel
-
-### V 0.0.1
-
-- RPM
-- Velocidade em KM/H
-- Marcha
-
-![front-end](./pictures/front.jpg)
 
 ### V 1.0.0
 
@@ -34,19 +26,15 @@ Speed Painel para o jogo Formula 1 2021 PC
 
 ## Pré-requisitos
 
-Necessário ter o [NodeJS](https://nodejs.org/en/download/)
-
 Telemetria via UDP ativada no jogo 👇
 
 ![telemetria](./pictures/setup-game.jpg)
 
 ## Rodando
 
-Para executar é só na pasta raiz rodar o comando 
+No computador baixe o e inicie o executável
 
-```
-node index.js
-```
+[![download](./pictures/download.png)](https://github.com/felipesdreis/dash-formulaone-2021/releases)
 
 No seu celular ou tablet abra o navegador e digite o ip do computador na porta 3000
 
