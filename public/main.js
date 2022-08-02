@@ -7,7 +7,6 @@ var laptime = document.getElementById('laptime')
 var position = document.getElementById('position')
 var lateralLeft = document.querySelectorAll('.left')
 var lateralRight = document.querySelectorAll('.right')
-//var rpm = document.getElementById('rpm')
 
 socket.on('dash', function (cardata) {
     //velocidade
@@ -82,14 +81,12 @@ function lightLeds(rpm) {
     //liga o que for menor
     for (let index = intRpm; index > 0; index--) {
         let light = `led${index}`
-        console.log("FSDR ~ lightLeds ~ light ON", light)
         document.getElementById(light).style.backgroundColor = dictionaryLeds[light]
         document.getElementById(light).style.boxShadow = `0px 0px 20px ${dictionaryLeds[light]}`
     }
     //desliga o que for maior
     for (let index = intRpm + 1; index <= numLeds; index++) {
         let light = `led${index}`
-        console.log("FSDR ~ lightLeds ~ light OFF", light)
         document.getElementById(light).style.backgroundColor = "gray"
         document.getElementById(light).style.boxShadow = `0px 0px 0px black`
     }

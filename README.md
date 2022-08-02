@@ -6,8 +6,6 @@ Speed Painel para o jogo Formula 1 2021 PC
 
 ## Painel
 
-### V 1.0.0
-
 - REV-Light
 
 - DRS on/off

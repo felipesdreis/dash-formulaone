@@ -1,4 +1,5 @@
 const express = require('express')
+const pconf = require('./package.json');
 const http = require("http")
 const F1TelemetryClient = require("f1-2021-udp")
 const { Server } = require("socket.io");
@@ -7,7 +8,7 @@ const app = express()
 const server = http.createServer(app)
 const io = new Server(server);
 
-// variavel global
+// variaveis global
 // id do piloto
 var driverID = 0
 var fiaFlags = 0
@@ -21,9 +22,9 @@ app.get('/', (req, res) => {
 app.use('/static', express.static(__dirname + '/public'));
 
 io.on('connection', (socket) => {
-    console.log('Front-End conectado');
+    console.log(`Dash conectado ==> ${socket.handshake.headers['user-agent'].match(/\([^)]*\)/g)}`);
     socket.on('disconnect', () => {
-        console.log('Front-End Disconectado');
+        console.log('Dash Disconectado');
     });
 });
 
@@ -47,7 +48,6 @@ client.on('carTelemetry', function (data) {
     let rpm = data.m_carTelemetryData[driverID].m_engineRPM
     let drs = data.m_carTelemetryData[driverID].m_drs
     let revLight = data.m_carTelemetryData[driverID].m_revLightsPercent
-    //console.log(revLight);
 
     sendToFront(speed, gear, revLight, drs)
 })
@@ -82,7 +82,8 @@ client.start();
 
 // inicia servidor express
 server.listen(3000, () => {
-    console.log('listening on *:3000');
+    console.log(`Version: ${pconf.version}`);
+    console.log('Ativo na porta *:3000');    
 });
 
 // unit test start
@@ -111,13 +112,20 @@ server.listen(3000, () => {
 // unit test end
 
 // Print Local IP
-var ifaces = require('os').networkInterfaces();
-var adresses = Object.keys(ifaces).reduce(function (result, dev) {
-    return result.concat(ifaces[dev].reduce(function (result, details) {
-        return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : [] + ' -- ');
-    }, []));
+const {networkInterfaces} = require('os')
+const nets = networkInterfaces()
+let IPv4_nets = []
+
+Object.entries(nets).forEach( ([key,netGroup]) => {
+    netGroup.forEach(net =>{
+        if (net.family == "IPv4"){
+            IPv4_nets.push({nome:key,IP:net.address})
+        }
+    })
 });
-console.log(`IP Local: ${adresses}`)
+
+console.table(IPv4_nets)
+console.log('Abra no navegador do celular ou tablet o ip acima na porta :3000 👆');
 
 //busca o id do piloto
 client.on('participants', function (data) {

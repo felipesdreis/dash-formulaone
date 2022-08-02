@@ -1,6 +1,6 @@
 {
   "name": "dash-formulaone-2021",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "dash painel for game f1 2021",
   "main": "index.js",
   "scripts": {
