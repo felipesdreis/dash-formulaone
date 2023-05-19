@@ -1,6 +1,7 @@
 # dash-formulaone-2021
 
-Speed Painel para o jogo Formula 1 2021 PC
+Speed Painel para o jogo Formula 1  PC
+Testado no Formula 1 21 e 22
 
 ![use](./pictures/usev1.gif)
 
