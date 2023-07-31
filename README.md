@@ -2,7 +2,7 @@
 
 Speed Painel para o jogo Formula 1 PC
 
-Testado no jogos 21 e 22
+Testado no jogos 21, 22 e 23
 
 ![use](./pictures/usev1.gif)
 
